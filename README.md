@@ -18,13 +18,27 @@
 
 |—|—|—|—`gravity ` //计算重力
 
+### 模型简介：
+
+基于离散弹性杆设计基础模型，将连续导丝离散为$n-1$段，共$n$个顶点。每个顶点表示为$\mathbf{x}_i\in\mathbb{R}^3$ ，广义坐标表示为：$\boldsymbol{q}=(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_n)^{\mathbb{T}}$
+
+动力学模型采用牛顿运动方程：
+$$
+\boldsymbol{M}\ddot{\boldsymbol{q}}=\mathbf{F}_b+\mathbf{F}_d+\mathbf{F}_s+\mathbf{F}_m
+$$
+其中，$\mathbf{F}_b$为弯曲应力，$\mathbf{F}_d$为阻尼力，$\mathbf{F}_s$为不可拉伸惩罚力，系统输入的外部磁场激发的磁驱动力$\mathbf{F}_m$表示为：
+$$
+\mathbf{F}_m=\mathbf{F}^\dagger_m\mathbf{B}=\mathbf{b}(t)\mathbf{u}
+$$
+$\mathbf{B}$为三维外部磁场。
+
 ### 参数设置：
 
 需要设置的参数，给出的是推荐值
 
 1. **NL=7;** 离散边的个数，顶点个数等于该值+1。一般取5-8即可。设置太多的仿真点会增加方程刚性，计算量增加，太少效果不好。
 2. **MASS = 0.06e-03;** 导丝的整体质量 （kg)
-3. **LENGTH = 28.6e-03;** 导丝的长度 (m)
+3. **LENGTH = 28.6e-03;**导丝的长度 (m)
 4. **r = (1.086e-03)/2;** 导丝半径 (m)
 5. **Mag = 1e5;** 导丝的磁化强度 (A/m)
 6. **g = 9.81;** 重力加速度 (m/s^2)
